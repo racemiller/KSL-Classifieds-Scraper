@@ -20,7 +20,7 @@ logging.basicConfig(
 try:
 
     headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36'
     }
 
     # url = "https://classifieds.ksl.com/v2/search/cat/Appliances"
@@ -39,7 +39,7 @@ try:
     chrome_options.add_argument("--remote-debugging-port=9222")  # Debugging
     chrome_options.add_argument("--disable-gpu")  # Disable GPU Hardware acceleration
     chrome_options.add_argument("window-size=1920x1080")  # Set a window size
-    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")  # Custom user-agent
+    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36")  # Custom user-agent
 
 
     # Set up the WebDriver
