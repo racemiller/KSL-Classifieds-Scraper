@@ -33,7 +33,7 @@ corrected_7 = re.sub(r'MSRP \$\d\d,\d\d\d', '', corrected_6) # removes 'MSRP' pr
 # corrected_8 = re.sub(r'est\..*$', '', corrected_7) # removes 'est.' monthly payment info and anything after it
 lines = corrected_7.split('\n')
 
-corrected_lines = [line.split("est.")[0].strip() for line in lines]
+corrected_lines = [line.split("est.")[0].strip() for line in lines] # removes 'est.' monthly payment info and anything after it
 
 # for corrected in corrected_lines:
 #     print(corrected)
