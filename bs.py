@@ -5,8 +5,15 @@ url = "/home/race/ksl/truck-large.html"
 
 soup = BeautifulSoup(open(url), 'html.parser')
 
-# with open('truck-1.html', 'w', encoding='utf-8') as f:
-#     f.write(soup.prettify())
+with open('truck-1.html', 'w', encoding='utf-8') as f:
+    f.write(soup.prettify())
+
+for link_tag in soup.find_all('a', href=True):
+        href_link = link_tag.get('href')
+        print(href_link)
+    # link_tag.string = link_tag.get_text(separator=' | ')
+
+
 
 # data = '' 
 # for data in soup.find_all('a'): 
@@ -16,7 +23,7 @@ soup = BeautifulSoup(open(url), 'html.parser')
 #     with open('truck.csv', 'a', encoding='utf-8') as f:
 #         f.write(data.get_text(' ') + '\n')
 
-output = '\n'.join([data.get_text(separator=' | ') for data in soup.find_all('a')])
+# output = '\n'.join([data.get_text(separator=' | ') for data in soup.find_all('a')])
 # print(output)
 
 
@@ -35,10 +42,32 @@ lines = corrected_7.split('\n')
 
 corrected_lines = [line.split("est.")[0].strip() for line in lines] # removes 'est.' monthly payment info and anything after it
 
+
+EXPECTED_COLUMNS = 5
+
+def process_row(input_row):
+    # Use Regex to filter and split the row
+    sections = re.split(r'\t+', input_row.strip())
+    # Ensure the row has the expected number of columns
+    if len(sections) != EXPECTED_COLUMNS:
+        return None
+    return sections
+
+def generate_tsv(corrected_lines):
+    with open('output.tsv', 'w') as tsv_file:
+        for row in corrected_lines:
+            processed_row = process_row(row)
+            if processed_row:
+                tsv_file.write('\t'.join(processed_row) + '\n')
+
+print("Generating TSV file...")
+generate_tsv(corrected_lines)
+
+
 # for corrected in corrected_lines:
 #     print(corrected)
 
 
-with open('truck.tsv', 'w', encoding='utf-8') as f:
-    # f.write('\n'.join(lines))
-    f.write('\n'.join(corrected_lines))
+# with open('truck.tsv', 'w', encoding='utf-8') as f:
+#     # f.write('\n'.join(lines))
+#     f.write('\n'.join(corrected_lines))
